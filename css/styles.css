@@ -1,0 +1,686 @@
+:root {
+    --primary-color: #0d1421;
+    --secondary-color: #1a2332;
+    --accent-green: #4CAF50;
+    --accent-blue: #2196F3;
+    --accent-gold: #FFC107;
+    --accent-red: #F44336;
+    --text-primary: #ffffff;
+    --text-secondary: #b0bec5;
+    --text-muted: #78909c;
+    --gradient-minecraft: linear-gradient(135deg, #4CAF50 0%, #2196F3 50%, #FFC107 100%);
+    --gradient-nether: linear-gradient(135deg, #F44336 0%, #FF5722 50%, #795548 100%);
+    --gradient-diamond: linear-gradient(135deg, #00BCD4 0%, #03DAC6 100%);
+    --shadow-glow: 0 0 20px rgba(76, 175, 80, 0.3);
+    --shadow-dark: 0 8px 40px rgba(0, 0, 0, 0.5);
+    --transition-smooth: all 0.3s ease;
+    --border-radius: 4px;
+    --pixel-size: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: var(--primary-color);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    background-image:
+        radial-gradient(circle at 20% 20%, rgba(76, 175, 80, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(33, 150, 243, 0.1) 0%, transparent 50%);
+}
+
+/* Pixel Art Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Press Start 2P', cursive;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 2px;
+}
+
+.display-1 {
+    font-size: clamp(2rem, 6vw, 4rem);
+    text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.8);
+}
+
+.section-title {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    margin-bottom: 3rem;
+    position: relative;
+    text-align: center;
+    color: var(--accent-green);
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--gradient-minecraft);
+    image-rendering: pixelated;
+}
+
+/* Utilities */
+.section-padding {
+    padding: 120px 0;
+}
+
+.pixel-box {
+    background: rgba(76, 175, 80, 0.1);
+    border: 2px solid var(--accent-green);
+    border-radius: var(--border-radius);
+    image-rendering: pixelated;
+    backdrop-filter: blur(10px);
+}
+
+.minecraft-btn {
+    background: var(--gradient-minecraft);
+    border: none;
+    padding: 12px 24px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    color: white;
+    text-transform: uppercase;
+    transition: var(--transition-smooth);
+    border-radius: var(--border-radius);
+    position: relative;
+    overflow: hidden;
+}
+
+.minecraft-btn::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #4CAF50, #2196F3, #FFC107, #F44336);
+    z-index: -1;
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.minecraft-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow);
+}
+
+.minecraft-btn:hover::before {
+    opacity: 1;
+}
+
+/* Navbar */
+.navbar {
+    padding: 1.5rem 0;
+    transition: var(--transition-smooth);
+    backdrop-filter: blur(20px);
+    border-bottom: 2px solid var(--accent-green);
+    background: rgba(13, 20, 33, 0.9);
+}
+
+.navbar-brand {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.2rem;
+    background: var(--gradient-minecraft);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+}
+
+.nav-link {
+    color: var(--text-primary) !important;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    font-weight: 400;
+    position: relative;
+    transition: var(--transition-smooth);
+    margin: 0 1rem;
+    text-transform: uppercase;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: var(--accent-green);
+    transition: var(--transition-smooth);
+    transform: translateX(-50%);
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+    width: 100%;
+}
+
+.nav-link:hover {
+    color: var(--accent-green) !important;
+    transform: translateY(-2px);
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background:
+        linear-gradient(135deg, rgba(13, 20, 33, 0.8) 0%, rgba(26, 35, 50, 0.9) 100%),
+        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="%234CAF50"><rect x="0" y="0" width="8" height="8"/><rect x="16" y="16" width="8" height="8"/><rect x="32" y="32" width="8" height="8"/><rect x="48" y="48" width="8" height="8"/><rect x="8" y="56" width="8" height="8"/><rect x="56" y="8" width="8" height="8"/></svg>') repeat;
+    background-size: 64px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    animation: pixelShift 20s linear infinite;
+}
+
+@keyframes pixelShift {
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 64px 64px;
+    }
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(13, 20, 33, 0.6) 70%);
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 2;
+    position: relative;
+}
+
+.hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--text-secondary);
+    margin-top: 2rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+}
+
+.hero-stat {
+    text-align: center;
+    padding: 1rem;
+    background: rgba(76, 175, 80, 0.1);
+    border: 2px solid var(--accent-green);
+    border-radius: var(--border-radius);
+    min-width: 120px;
+}
+
+.hero-stat-number {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem;
+    color: var(--accent-green);
+    display: block;
+}
+
+.hero-stat-label {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+}
+
+/* Artist Statement */
+#statement {
+    background: var(--secondary-color);
+    position: relative;
+}
+
+#statement::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="%232196F3" opacity="0.1"><rect x="0" y="0" width="4" height="4"/><rect x="8" y="8" width="4" height="4"/><rect x="16" y="16" width="4" height="4"/><rect x="24" y="24" width="4" height="4"/></svg>') repeat;
+    background-size: 32px 32px;
+}
+
+.statement-content {
+    position: relative;
+    z-index: 2;
+}
+
+.statement-text {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    line-height: 1.8;
+    color: var(--text-secondary);
+    font-family: 'Orbitron', sans-serif;
+    position: relative;
+    padding: 2rem;
+    background: rgba(33, 150, 243, 0.1);
+    border: 2px solid var(--accent-blue);
+    border-radius: var(--border-radius);
+    text-align: center;
+}
+
+/* Portfolio Section */
+#portfolio {
+    background: var(--primary-color);
+}
+
+.portfolio-filter {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+}
+
+.portfolio-filter .btn {
+    background: transparent;
+    border: 2px solid var(--accent-green);
+    color: var(--text-secondary);
+    padding: 12px 20px;
+    border-radius: var(--border-radius);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 10px;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.portfolio-filter .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--accent-green);
+    transition: var(--transition-smooth);
+    z-index: -1;
+}
+
+.portfolio-filter .btn.active,
+.portfolio-filter .btn:hover {
+    color: var(--primary-color);
+    border-color: var(--accent-green);
+    transform: translateY(-2px);
+}
+
+.portfolio-filter .btn.active::before,
+.portfolio-filter .btn:hover::before {
+    left: 0;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 300px));
+    gap: 2rem;
+    justify-content: center;
+}
+
+.portfolio-item {
+    position: relative;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    height: 300px;
+    border: 2px solid var(--accent-green);
+    background: var(--secondary-color);
+    image-rendering: pixelated;
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    object-position: top;
+    transition: var(--transition-smooth);
+    image-rendering: pixelated;
+}
+
+@media (max-width: 480px) {
+
+  .portfolio-item {
+    height: auto;
+  }
+
+  .portfolio-item img {
+    object-fit: cover;
+    max-height: 300px;
+  }
+}
+
+.portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(76, 175, 80, 0.9), rgba(33, 150, 243, 0.9));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.portfolio-item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-glow);
+}
+
+.portfolio-item:hover .portfolio-overlay {
+    opacity: 1;
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.1);
+}
+
+.portfolio-overlay i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.portfolio-overlay h5 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.portfolio-overlay p {
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Services Section */
+#services {
+    background: var(--secondary-color);
+    position: relative;
+}
+
+.service-card {
+    background: rgba(76, 175, 80, 0.1);
+    border: 2px solid var(--accent-green);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    transition: var(--transition-smooth);
+    height: 100%;
+    text-align: center;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-glow);
+    border-color: var(--accent-blue);
+}
+
+.service-icon {
+    font-size: 3rem;
+    color: var(--accent-green);
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.service-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.service-description {
+    color: var(--text-secondary);
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Testimonials */
+#testimonials {
+    background: var(--primary-color);
+}
+
+.testimonial-card {
+    background: rgba(33, 150, 243, 0.1);
+    border: 2px solid var(--accent-blue);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.testimonial-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-diamond);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-glow);
+}
+
+.testimonial-card blockquote {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.testimonial-card cite {
+    color: var(--accent-blue);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+}
+
+/* Contact Section */
+#contact {
+    background: var(--secondary-color);
+}
+
+.contact-info {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contact-email {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    display: inline-block;
+    margin-bottom: 2rem;
+    font-family: 'Press Start 2P', cursive;
+
+    word-break: break-all;
+    overflow-wrap: break-word;
+}
+
+@media (max-width: 576px) {
+    .contact-email {
+        font-size: 0.85rem;
+    }
+}
+
+
+.contact-email:hover {
+    color: var(--accent-green);
+    transform: translateY(-2px);
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.social-links a {
+    width: 60px;
+    height: 60px;
+    background: rgba(76, 175, 80, 0.1);
+    border: 2px solid var(--accent-green);
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.social-links a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-minecraft);
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.social-links a:hover {
+    transform: translateY(-5px);
+    color: var(--text-primary);
+}
+
+.social-links a:hover::before {
+    opacity: 1;
+}
+
+.social-links a i {
+    position: relative;
+    z-index: 2;
+}
+
+/* Footer */
+footer {
+    background: var(--primary-color);
+    padding: 2rem 0;
+    border-top: 2px solid var(--accent-green);
+}
+
+/* Modal */
+.modal-content {
+    background: var(--secondary-color);
+    border: 2px solid var(--accent-green);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(20px);
+}
+
+.modal-header {
+    border-bottom: 2px solid var(--accent-green);
+}
+
+.modal-title {
+    font-family: 'Press Start 2P', cursive;
+    color: var(--accent-green);
+}
+
+.btn-close {
+    filter: invert(1) grayscale(100%) brightness(200%);
+    opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .section-padding {
+        padding: 80px 0;
+    }
+
+    .hero-stats {
+        gap: 1rem;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .social-links {
+        gap: 1rem;
+    }
+
+    .testimonial-card {
+        padding: 1.5rem;
+    }
+
+    .nav-link {
+        font-size: 8px;
+        margin: 0 0.5rem;
+    }
+}
+
+/* Minecraft-specific animations */
+@keyframes blockBreak {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.minecraft-hover:hover {
+    animation: blockBreak 0.3s ease;
+}
+
+@keyframes pixelGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--accent-green);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--accent-green), 0 0 30px var(--accent-green);
+    }
+}
+
+.pixel-glow {
+    animation: pixelGlow 2s ease-in-out infinite;
+}
